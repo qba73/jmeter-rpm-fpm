@@ -1,0 +1,19 @@
+---
+- hosts: all
+  become: yes
+  gather_facts: yes
+
+  tasks:
+  - name: installing OS dependencies
+    package: name={{ item }} state=present
+    with_items:
+      - ruby-devel
+      - gcc
+      - make
+      - rpm-build
+      - rubygems
+      - ansible
+
+  - name: installing fpm ruby package
+    command: gem install --no-ri --no-rdoc fpm
+
