@@ -13,7 +13,9 @@ JMETER_RPM  = jmeter_$(JMETER_VERSION)_$(JMETER_ARCH).rpm
 MAINTAINER  = "<jakub.jarosz@postpro.net>"
 PREFIX      = /opt/jmeter
 WORKDIR     = /tmp/installdir
-#REPO_HOST   = repo.erelis.it
+
+# update this to the relevant rpm repository hosted in your local environment
+REPO_HOST   = repo.erelis.it
 
 define untar_jmeter
   tar -xzf $(JMETER_TAR) -C $(WORKDIR)/
@@ -62,9 +64,8 @@ deps:
 	sudo gem install --no-ri --no-rdoc fpm
 
 
-#upload:
-#	@echo "Uploading rpm package and updating repository..."
-#	test -f $(JMETER_RPM) && ansible -i $(REPO_HOST), -b -m copy -a "src=$(JMETER_RPM) dest=/repos/jmeter/$(JMETER_RPM)" all
-#	test -f $(JMETER_RPM) && ansible -i $(REPO_HOST), -b -m shell -a "createrepo /repos/jmeter" all
-
+upload:
+	@echo "Uploading rpm package and updating repository..."
+	test -f $(JMETER_RPM) && ansible -i $(REPO_HOST), -b -m copy -a "src=$(JMETER_RPM) dest=/repos/jmeter/$(JMETER_RPM)" all
+	test -f $(JMETER_RPM) && ansible -i $(REPO_HOST), -b -m shell -a "createrepo /repos/jmeter" all
 

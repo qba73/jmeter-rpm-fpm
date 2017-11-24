@@ -20,6 +20,24 @@ Execute make target:
 $ make build
 ```
 
+## Upload rpm artifact to s3
+Execute make target:
+```bash
+$ make upload-to-s3
+```
+
+## Upload rpm artifact to local JMeter repository
+Execute make target:
+```bash
+$ make upload-to-repo
+```
+
+## Upload rpm artifact to both places
+Execute make target:
+```bash
+$ make upload
+```
+
 
 # Usage
 
@@ -29,10 +47,13 @@ $ make
 
 =============== JMeter RPM builder ===============
 
-make deps     - run once to install fpm tool (RH)
-make build    - build jmeter rpm
-make clean    - clean the build environment
-make mrproper - wipeout environment and artifacts
+make deps           - run once to install fpm tool (RH)
+make build          - build jmeter rpm
+make clean          - clean the build environment
+make upload-to-s3   - 
+make upload-to-repo -
+make upload         - upload rpm to either s3 bucket or hoster rpm repo
+make mrproper       - wipeout environment and artifacts
 ```
 
 Build rpm:
